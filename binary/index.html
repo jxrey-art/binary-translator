@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; manifest-src 'self'; connect-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#070914">
+<meta name="description" content="Convertissez du texte en binaire UTF-8 et décodez du binaire en texte, hors ligne.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Binary Translator">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Binary Translator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Binary Translator</h1>
+    <p class="sub">Convert. Decode. Understand.</p>
+  </header>
+
+  <div class="bar">
+    <div class="modes" id="modes" data-mode="encode" role="group" aria-label="Mode de conversion">
+      <span class="thumb" aria-hidden="true"></span>
+      <button type="button" id="mode-encode" aria-pressed="true">Texte → Binaire</button>
+      <button type="button" id="mode-decode" aria-pressed="false">Binaire → Texte</button>
+    </div>
+    <div class="tools">
+      <button type="button" class="btn" id="install" hidden>Installer l’app</button>
+      <button type="button" class="btn" id="swap">Inverser</button>
+      <button type="button" class="btn" id="paste">Coller</button>
+      <button type="button" class="btn" id="clear">Effacer</button>
+    </div>
+  </div>
+
+  <main class="grid">
+    <section class="panel">
+      <div class="panel-head">
+        <h2 id="in-title">Texte à convertir</h2>
+        <span class="meta" id="in-meta"></span>
+      </div>
+      <textarea id="input" spellcheck="false" aria-labelledby="in-title" autocomplete="off"></textarea>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2 id="out-title">Binaire UTF-8</h2>
+        <button type="button" class="btn" id="copy">Copier</button>
+      </div>
+      <div class="out" id="output" tabindex="0" role="region" aria-labelledby="out-title" aria-live="polite"></div>
+      <p class="error" id="error" role="alert"></p>
+      <span class="meta" id="out-meta"></span>
+    </section>
+  </main>
+
+  <p class="note">Le binaire n’est pas un chiffrement : c’est un simple encodage réversible. N’importe qui peut le décoder, il ne protège donc aucune information.</p>
+</div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
